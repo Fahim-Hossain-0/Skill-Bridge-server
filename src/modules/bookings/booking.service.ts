@@ -12,7 +12,7 @@ const createBooking = async (data: any, userId: string) => {
       endTime: data.endTime,
       categoryId: data.categoryId,
      studentId:userId ,
-     tutorProfileId:userId
+     tutorProfileId: data.tutorProfileId,
     }
   });
 

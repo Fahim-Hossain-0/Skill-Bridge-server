@@ -4,6 +4,7 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import cors from "cors"
 import { categoryRouter } from "./modules/categories/category.router";
+import { tutorsProfileRouter } from "./modules/tutorsProfile/tutorsProfile.router";
 const app = express()
 app.use(express.json())
 
@@ -23,7 +24,7 @@ app.use("/bookings",postRouter)
 app.use("/categories",categoryRouter)
 
 // TutorProfile API
-app.use("create-tutor-profile")
+app.use("/create/tutor-profile", tutorsProfileRouter);
 app.get("/", (req, res) => {
     res.send("Hello World!")
 })
