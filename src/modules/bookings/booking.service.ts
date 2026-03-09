@@ -1,17 +1,25 @@
 import { Booking } from "../../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 
-const createBooking = async(data:Omit<Booking, 'id' | 'createdAt' | 'updatedAt' | 'authorId'>, userId: string)=>{
-const result = await prisma.booking.create({
-    data:{
-        ...data,
-         date: new Date(data.date)
-      
+
+
+const createBooking = async (data: any, userId: string) => {
+
+  const result = await prisma.booking.create({
+    data: {
+      date: new Date(data.date),
+      startTime: data.startTime,
+      endTime: data.endTime,
+      categoryId: data.categoryId,
+     studentId:userId ,
+     tutorProfileId:userId
     }
-});
-console.log(result);
-return result;
-}
+  });
+
+  return result;
+};
+
+
 
 export const bookingService = {
     createBooking

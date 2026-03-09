@@ -1,10 +1,15 @@
 import { NextFunction, Request, Response } from "express"
 import { bookingService } from "./booking.service"
 
-const createPost = async (req:Request, res:Response, next: NextFunction) => {
+const createBooking = async (req:Request, res:Response, next: NextFunction) => {
    try {
-
-    const result = await bookingService.createBooking(req.body)
+        const user = req.user;
+        if (!user) {
+            return res.status(400).json({
+                error: "Unauthorized!",
+            })
+        }
+    const result = await bookingService.createBooking(req.body,user.id)
     res.status(201).json(result)
    } catch (error) {
         next(error)
@@ -12,5 +17,6 @@ const createPost = async (req:Request, res:Response, next: NextFunction) => {
 }   
 
 export const bookingController = { 
-    createPost
+    createBooking
 }
+    

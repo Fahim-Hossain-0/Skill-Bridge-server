@@ -3,6 +3,7 @@ import { postRouter } from "./modules/bookings/booking.router"
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import cors from "cors"
+import { categoryRouter } from "./modules/categories/category.router";
 const app = express()
 app.use(express.json())
 
@@ -16,6 +17,10 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 // bookings----
 
 app.use("/bookings",postRouter)
+
+// category API
+
+app.use("/categories",categoryRouter)
 
 app.get("/", (req, res) => {
     res.send("Hello World!")
