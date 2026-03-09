@@ -22,6 +22,8 @@ app.use("/bookings",postRouter)
 
 app.use("/categories",categoryRouter)
 
+// TutorProfile API
+app.use("create-tutor-profile")
 app.get("/", (req, res) => {
     res.send("Hello World!")
 })
